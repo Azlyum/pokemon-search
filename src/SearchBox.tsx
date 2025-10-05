@@ -9,26 +9,41 @@ export default function SearchBox() {
   const tooShort = query.trim().length < minInput;
 
   return (
-    <div className="max-w-3xl mx-auto p-6 font-sans">
-      <h1 className="text-2xl font-bold mb-3">Debounced Search Demo</h1>
+    <div>
+      <div className="mb-4 inline-block align-top ">
+        <h1 className="text-2xl font-bold mb-3">Debounced Search Demo</h1>
 
-      <input
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Type to search…"
-        className="w-full px-3 py-2 rounded border border-indigo-700 outline-none"
-      />
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type to search…"
+          className=" px-3 py-2 rounded border border-indigo-700 outline-none"
+        />
+        <button
+          disabled={!input}
+          className={`ml-2 px-3 py-2 rounded border text-red-700 transition-colors
+    ${
+      input
+        ? "border-red-700 hover:bg-red-700 hover:text-white"
+        : "border-gray-400 text-gray-400 cursor-not-allowed"
+    }`}
+          onClick={() => setInput("")}
+        >
+          Clear Search
+        </button>
 
-      <div aria-live="polite" className="text-xs text-gray-500 mt-2">
-        {loading
-          ? "Searching…"
-          : query
-          ? `Results for “${query}”`
-          : "Start typing"}
+        <div aria-live="polite" className="text-xs text-gray-500 mt-2">
+          {loading
+            ? "Searching…"
+            : query
+            ? `Results for “${query}”`
+            : "Start typing"}
+        </div>
+
+        {error && (
+          <div className="text-red-700 mt-2">Error: {error.message}</div>
+        )}
       </div>
-
-      {error && <div className="text-red-700 mt-2">Error: {error.message}</div>}
-
       {tooShort && (
         <div className="text-gray-500 mt-2">
           Please type at least {minInput} character{minInput > 1 ? "s" : ""}.
