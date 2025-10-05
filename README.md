@@ -15,3 +15,14 @@ A small React + TypeScript + Vite app demonstrating debounced API search with ca
 # After Searching
 
 ![App Preview](./afterSearch.png)
+
+## Getting Started
+
+Clone the repo and run it locally:
+
+```bash
+git clone https://github.com/Azlyum/pokemon-search.git
+cd pokemon-search
+pnpm install
+pnpm run dev
+```
